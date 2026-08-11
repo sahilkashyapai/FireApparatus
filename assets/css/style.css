@@ -1,13 +1,7 @@
 .header.header--no-nav+main {
     height: calc(100dvh - 50px);
-    overflow-y: auto;
-
 }
 
-/* The shared header CSS hides .header-user-actions below 1080px assuming a
-   mobile nav takes over — this page has no nav (header--no-nav), so that
-   would leave no way to see the user or log out on tablet/mobile. Keep it
-   visible and just let it wrap/shrink instead. */
 @media (max-width: 1080px) {
     .header--no-nav .header-user-actions {
         display: flex !important;
@@ -27,6 +21,8 @@
     gap: 16px;
     padding: 16px;
     margin-right: 65px;
+    overflow-y: auto;
+    height: 100%;
 }
 
 .upper-section,
@@ -119,6 +115,46 @@
     background-size: 100% 100%;
     border-radius: 8px;
     position: relative;
+    cursor: grab;
+}
+
+.ai-fam-device-list .ai-fam-device.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}
+
+.ai-fam-device-list .ai-fam-device.drag-over {
+    outline: 2px solid #ffffffcc;
+    outline-offset: -2px;
+}
+
+.ai-fam-device-list.drag-over {
+    outline: 2px dashed #ffffff80;
+    outline-offset: -4px;
+    border-radius: 8px;
+}
+
+.ai-fam-device-list .ai-fam-device.on-call {
+    opacity: 0.6;
+    filter: grayscale(1);
+}
+
+.ai-fam-device-list .ai-fam-device.in-shop {
+    opacity: 0.6;
+    filter: grayscale(1);
+}
+
+.ai-fam-device-list .ai-fam-device.moved-up {
+    filter: brightness(0.4) saturate(0.7);
+}
+
+.ai-fam-device-list .ai-fam-device.moved-up::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    pointer-events: none;
 }
 
 .ai-fam-device-list .ai-fam-device.PatternVehicle.Red {
@@ -352,7 +388,7 @@
     cursor: pointer;
 }
 
-.swap-log-actions .icon-btn img{
+.swap-log-actions .icon-btn img {
     width: 100%;
 }
 
@@ -470,7 +506,7 @@
 
     .upper-section .content-card {
         width: calc(50% - 4px);
-        height: 220px;
+        height: auto;
     }
 
     .lower-section {
@@ -480,8 +516,12 @@
 
     .lower-section .content-card:nth-of-type(1),
     .lower-section .content-card:nth-of-type(2) {
-        width: calc(50% - 4px);
-        height: 280px;
+        width: 100%;
+        height: auto;
+    }
+
+    .ai-fam-device-list-divider {
+        height: auto;
     }
 
     .lower-section .content-card:last-of-type {
@@ -515,8 +555,6 @@
     }
 }
 
-/* Tablet portrait / large phone: stack everything into one column and
-   move the toolbar to a bottom bar so it doesn't eat horizontal space */
 @media (max-width: 768px) {
     .header-head {
         flex-wrap: wrap;
@@ -528,13 +566,8 @@
         display: none;
     }
 
-    .header.header--no-nav+main {
-        height: auto;
-        min-height: calc(100dvh - 50px);
-    }
-
     .ai-fam-wrapper {
-        height: auto;
+        height: calc(100% - 50px);
         margin-right: 0;
         margin-bottom: 50px;
     }
@@ -551,7 +584,6 @@
     .lower-section .content-card:last-of-type {
         width: 100%;
         height: auto;
-        min-height: 180px;
     }
 
     .swap-log-card {
