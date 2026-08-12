@@ -5,6 +5,7 @@
     // whenever the box has room again (e.g. on resize).
     const SELECTOR = '.ai-fam-device-list .ai-fam-device > span[data-text]';
     const MIN_FONT_SIZE = 8;
+    const ABSOLUTE_MIN_FONT_SIZE = 6;
     const SAFETY_MARGIN = 0.94;
     const LONG_LABEL_THRESHOLD = 3;
     const LONG_LABEL_RATIO = 0.72;
@@ -60,7 +61,11 @@
 
             let measured = measureTextWidth(text, `${fontWeight} ${fontSize}px ${fontFamily}`, letterSpacing);
             let guard = 0;
-            while (measured > boxWidth && fontSize > MIN_FONT_SIZE && guard < 6) {
+            // Keep trimming past MIN_FONT_SIZE, down to ABSOLUTE_MIN_FONT_SIZE, rather
+            // than giving up mid-overflow — a very narrow tile (small-laptop widths,
+            // long labels like "SpE(TK126)") would otherwise clip text even though the
+            // loop still had room to shrink further.
+            while (measured > boxWidth && fontSize > ABSOLUTE_MIN_FONT_SIZE && guard < 12) {
                 fontSize -= 1;
                 measured = measureTextWidth(text, `${fontWeight} ${fontSize}px ${fontFamily}`, letterSpacing);
                 guard++;

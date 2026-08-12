@@ -1,3 +1,14 @@
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('pagePreloader');
+    if (!preloader) return;
+
+    const minVisible = new Promise((resolve) => setTimeout(resolve, 500));
+    minVisible.then(() => {
+        preloader.classList.add('is-hidden');
+        preloader.addEventListener('transitionend', () => preloader.remove(), { once: true });
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const toggles = [
         { btnId: 'readySparesToggleBtn', cardId: 'readySpares' },
@@ -34,11 +45,39 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.ai-fam-device').forEach(updateDeviceState);
     initDeviceDragAndDrop();
     initSwapLog();
+    initThemeSwitcher();
 });
 
 const LAYOUT_STORAGE_KEY = 'fireApparatusLayout_v2';
 const ON_CALL_STORAGE_KEY = 'fireApparatusOnCall_v1';
 const SWAP_LOG_STORAGE_KEY = 'fireApparatusSwapLog_v1';
+const THEME_STORAGE_KEY = 'fireApparatusTheme_v1';
+const THEMES = ['glance', 'mainelink', 'mcomms', 'rattler', 'wwe'];
+const DEFAULT_THEME = 'glance';
+
+function applyTheme(theme) {
+    if (!THEMES.includes(theme)) theme = DEFAULT_THEME;
+
+    document.documentElement.setAttribute('data-theme', theme);
+
+    const logo = document.querySelector('.brand-logo');
+    if (logo) logo.src = `https://appinfoui.netlify.app/cdn/images/${theme}/logo.png`;
+
+    const select = document.getElementById('themeSelect');
+    if (select) select.value = theme;
+
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+}
+
+function initThemeSwitcher() {
+    const select = document.getElementById('themeSelect');
+    if (!select) return;
+
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    applyTheme(savedTheme || document.documentElement.getAttribute('data-theme') || DEFAULT_THEME);
+
+    select.addEventListener('change', () => applyTheme(select.value));
+}
 
 function assignStableIds() {
     const textCounts = {};

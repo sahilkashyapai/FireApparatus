@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fire Apparatus Manager</title>
+    <link rel="icon" type="image/png" href="https://appinfoui.netlify.app/cdn/ai-icon.png">
     <!-- AppInfo.UI CSS -->
     <link rel="stylesheet" href="https://appinfoui.netlify.app/cdn/components.css?v=1.0.2">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -12,11 +13,98 @@
 
 <body>
 
+    <div class="page-preloader" id="pagePreloader">
+        <div class="preloader-header">
+            <div class="ai-skel ai-skel-circle" style="width:30px;height:30px;margin:0;"></div>
+            <div class="ai-skel ai-skel-title" style="width:150px;margin:0;"></div>
+            <div class="preloader-header-spacer"></div>
+            <div class="ai-skel ai-skel-text" style="width:130px;margin:0;"></div>
+            <div class="ai-skel ai-skel-btn" style="width:90px;height:30px;margin:0;"></div>
+        </div>
+
+        <div class="preloader-body">
+            <div class="preloader-row preloader-row--upper">
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preloader-row preloader-row--lower">
+                <div class="preloader-card preloader-card--wide">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card preloader-card--wide">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card preloader-card--wider">
+                    <div class="ai-skel ai-skel-title" style="width:100%;"></div>
+                    <div class="ai-skel ai-skel-text"></div>
+                    <div class="ai-skel ai-skel-text"></div>
+                    <div class="ai-skel ai-skel-text"></div>
+                    <div class="ai-skel ai-skel-text" style="width:70%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header class="header header--no-nav">
         <div class="header-head">
             <div class="header-branding">
                 <img src="https://appinfoui.netlify.app/cdn/images/glance/logo.png" class="brand-logo" alt="Logo" />
                 <span class="powered-by">Fire Apparatus Manager</span>
+            </div>
+            <div class="header-dropdown-items ai-d-none">
+                <select class="ai-select" id="themeSelect" aria-label="Theme">
+                    <option value="glance">Glance</option>
+                    <option value="mainelink">MaineLink</option>
+                    <option value="mcomms">MComms</option>
+                    <option value="rattler">Rattler</option>
+                    <option value="wwe">WWE</option>
+                </select>
             </div>
             <div class="header-user-actions">
                 <div class="user-info">
@@ -209,7 +297,7 @@
                 </div>
                 <div class="content-card swap-log-card" id="swapLogCard">
                     <div class="swap-log-header">
-                        <button class="ai-btn ai-btn-primary swap-log-add-btn" type="button">ADD SWAP</button>
+                        <button class="ai-btn ai-btn-primary-light swap-log-add-btn" type="button">ADD SWAP</button>
                         <h3 class="swap-log-title">SWAP OUT LOG</h3>
                         <div class="swap-log-actions">
                             <button class="icon-btn" type="button">
@@ -391,7 +479,6 @@
                 </div>
             </div>
         </section>
-
 
         <aside class="ai-fam-toolbar">
             <button class="ai-fam-toolbar-btn" type="button" id="legendToggleBtn">

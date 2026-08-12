@@ -2,6 +2,92 @@
     height: calc(100dvh - 50px);
 }
 
+.page-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    background: var(--c-page-bg, #eef2f6);
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.page-preloader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-header {
+    flex: none;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    background: var(--c-dark, #1c5380);
+}
+
+.preloader-header-spacer {
+    flex: 1;
+}
+
+.preloader-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    margin-right: 65px;
+    overflow: hidden;
+}
+
+.preloader-row {
+    display: flex;
+    gap: 8px;
+}
+
+.preloader-row--upper {
+    height: 40%;
+}
+
+.preloader-row--upper .preloader-card {
+    flex: 1;
+}
+
+.preloader-row--lower {
+    height: calc(60% - 16px);
+}
+
+.preloader-card {
+    background: var(--c-surface, #fff);
+    border: 1px solid var(--c-border, #dde3e9);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preloader-card--wide {
+    flex: 1.5;
+}
+
+.preloader-card--wider {
+    flex: 2;
+}
+
+.preloader-tile-row {
+    display: flex;
+    gap: 8px;
+}
+
+.preloader-tile-row .ai-skel {
+    flex: 1;
+    height: 40px;
+    margin: 0;
+}
+
 @media (max-width: 1080px) {
     .header--no-nav .header-user-actions {
         display: flex !important;
@@ -116,6 +202,7 @@
     border-radius: 8px;
     position: relative;
     cursor: grab;
+    filter: var(--tile-color-filter, ) var(--tile-state-filter, );
 }
 
 .ai-fam-device-list .ai-fam-device.dragging {
@@ -136,16 +223,68 @@
 
 .ai-fam-device-list .ai-fam-device.on-call {
     opacity: 0.6;
-    filter: grayscale(1);
+    --tile-state-filter: grayscale(1);
 }
 
 .ai-fam-device-list .ai-fam-device.in-shop {
     opacity: 0.6;
-    filter: grayscale(1);
+    --tile-state-filter: grayscale(1);
 }
 
 .ai-fam-device-list .ai-fam-device.moved-up {
-    filter: brightness(0.4) saturate(0.7);
+    --tile-state-filter: brightness(0.4) saturate(0.7);
+}
+
+/* Vehicle Type colors without dedicated bezel art: approximated by
+   recoloring the closest existing texture via CSS filter (agreed
+   approach — see Dark Red/Dark Blue/Black in the legend). */
+.ai-fam-device-list .ai-fam-device.availablevehicle.DarkRed {
+    background-image: url(../images/availablevehicle-Red.png);
+    --tile-color-filter: brightness(0.6);
+}
+
+.ai-fam-device-list .ai-fam-device.PatternVehicle.DarkRed {
+    background-image: url(../images/PatternVehicle-Red.png);
+    --tile-color-filter: brightness(0.6);
+}
+
+.ai-fam-device-list .ai-fam-device.availablevehicle.DarkBlue {
+    background-image: url(../images/availablevehicle-Blue.png);
+    --tile-color-filter: brightness(0.55) saturate(1.1);
+}
+
+.ai-fam-device-list .ai-fam-device.PatternVehicle.DarkBlue {
+    background-image: url(../images/PatternVehicle-Blue.png);
+    --tile-color-filter: brightness(0.55) saturate(1.1);
+}
+
+.ai-fam-device-list .ai-fam-device.availablevehicle.Black {
+    background-image: url(../images/availablevehicle-Purple.png);
+    --tile-color-filter: grayscale(1) brightness(0.55) contrast(1.05);
+}
+
+.ai-fam-device-list .ai-fam-device.PatternVehicle.Black {
+    background-image: url(../images/PatternVehicle-Purple.png);
+    --tile-color-filter: grayscale(1) brightness(0.55) contrast(1.05);
+}
+
+/* Vehicle State overlays that tint any underlying type color, per the
+   Vehicle State legend (Browned Out / Additional Vehicle). */
+.ai-fam-device-list .ai-fam-device.browned-out::before,
+.ai-fam-device-list .ai-fam-device.additional-vehicle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.ai-fam-device-list .ai-fam-device.browned-out::before {
+    background: rgba(157, 101, 45, 0.65);
+}
+
+.ai-fam-device-list .ai-fam-device.additional-vehicle::before {
+    background: rgba(238, 255, 0, 0.35);
 }
 
 .ai-fam-device-list .ai-fam-device.moved-up::after {
@@ -288,8 +427,8 @@
     height: 40px;
     border: none;
     border-radius: 6px;
-    background: #f2f2f2;
-    color: #424447;
+    background: var(--c-surface, #f2f2f2);
+    color: var(--c-dark, #424447);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -302,8 +441,8 @@
 }
 
 .ai-fam-toolbar-btn.active {
-    background: #279ED6;
-    color: #ffffff;
+    background: var(--c-btn, #279ED6);
+    color: var(--c-white, #ffffff);
 }
 
 .content-card.is-hidden {
@@ -326,7 +465,7 @@
 
 .legend-popup img {
     display: block;
-    max-width: 350px;
+    max-width: 450px;
     width: 100%;
     border-radius: 16px;
     box-shadow: 0 4px 12px 0 #00000040;
@@ -351,7 +490,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    background: #2c6b9c;
+    background: var(--c-mid);
     padding: 8px 12px;
 }
 
@@ -491,6 +630,16 @@
     .card-heading {
         font-size: 26px;
     }
+
+    .preloader-body {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .ai-fam-device span {
+        left: 42px;
+        width: calc(100% - 44px);
+    }
 }
 
 /* Tablet landscape: wrap the 5-up station row into two rows */
@@ -553,6 +702,33 @@
     .header-user-actions .user-info {
         font-size: 12px;
     }
+
+    .preloader-body {
+        margin-right: 56px;
+    }
+
+    .preloader-row--upper {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .preloader-row--upper .preloader-card {
+        flex: 0 0 calc(50% - 4px);
+    }
+
+    .preloader-row--lower {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .preloader-card--wide {
+        flex: 0 0 100%;
+    }
+
+    .preloader-card--wider {
+        flex: 0 0 100%;
+        height: 320px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -563,6 +739,10 @@
 
     .user-business,
     .user-info>span:not(.user-name) {
+        display: none;
+    }
+
+    .preloader-header .ai-skel-text {
         display: none;
     }
 
@@ -618,6 +798,30 @@
         bottom: 60px;
         right: 12px;
     }
+
+    .preloader-body {
+        height: calc(100% - 50px);
+        margin-right: 0;
+        margin-bottom: 50px;
+    }
+
+    .preloader-row--upper,
+    .preloader-row--lower {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .preloader-row--upper .preloader-card,
+    .preloader-card--wide {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .preloader-card--wider {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 360px;
+    }
 }
 
 /* The shared header CSS tries to swap the LOGOUT button to an icon-only
@@ -627,6 +831,10 @@
 @media (max-width: 576px) {
     .header .header-head .logout-btn-icon {
         display: inline-block !important;
+    }
+
+    .legend-popup img {
+        max-width: 320px;
     }
 }
 
