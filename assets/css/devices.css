@@ -1,0 +1,288 @@
+/* ===================== Device tile component ======================
+   Pure HTML/CSS re-creation of the availablevehicle-*.png /
+   PatternVehicle-*.png artwork. Every metric is sized in container
+   query units (cqi = % of the tile's own inline size), so a single
+   component scales cleanly from a few px to full width on any screen
+   instead of relying on raster images at fixed resolutions. */
+
+/* .device-tile is the container query context — it must not size itself
+   in cqi units (an element cannot query the container it establishes).
+   All cqi-based visual styling lives on .device-tile-frame, a plain
+   descendant sized to fill it. */
+.device-tile {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 2.65 / 1;
+    container-type: inline-size;
+    cursor: grab;
+}
+
+.device-tile-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 12cqi;
+    padding: 3.4cqi;
+    background: linear-gradient(135deg, #fdfdfe 0%, #e4e4e6 18%, #b6b6ba 42%, #f7f7f8 58%, #c7c7ca 78%, #eaeaeb 100%);
+    box-shadow:
+        0 2.2cqi 3.6cqi rgba(0, 0, 0, .35),
+        inset 0 0.6cqi 1.2cqi rgba(255, 255, 255, .65),
+        inset 0 -1cqi 1.6cqi rgba(0, 0, 0, .18);
+}
+
+.device-tile-plate {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border: 1.6cqi solid #000;
+    border-radius: 8cqi;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 0.6cqi rgba(255, 255, 255, .08);
+}
+
+.device-tile-color {
+    flex: 0 0 34%;
+    position: relative;
+    background:
+        radial-gradient(circle at 32% 26%, var(--tile-light, #ff6b6b) 0%, transparent 58%),
+        linear-gradient(155deg, var(--tile-light, #ff6b6b) 0%, var(--tile-base, #ff1111) 48%, var(--tile-dark, #8f1414) 100%);
+}
+
+.device-tile-color::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(100deg, rgba(255, 255, 255, .12) 0 1px, transparent 1px 5px);
+    mix-blend-mode: overlay;
+    opacity: .5;
+}
+
+.device-tile-surface {
+    flex: 1;
+    position: relative;
+    border-left: 1.4cqi solid #000;
+    background: linear-gradient(125deg, #fdfdfe 0%, #eceef0 30%, #b9bcc0 50%, #ffffff 72%, #d6d8da 100%);
+}
+
+.device-tile-surface::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .55) 0 1px, rgba(0, 0, 0, .04) 1px 3px);
+    opacity: .6;
+}
+
+/* Pattern variant: dark diamond-plate tread instead of plain brushed metal */
+.device-tile.pattern .device-tile-surface {
+    background: linear-gradient(160deg, #3c3c3c 0%, #1a1a1a 55%, #050505 100%);
+}
+
+.device-tile.pattern .device-tile-surface::after {
+    background:
+        repeating-linear-gradient(45deg, rgba(235, 235, 240, .35) 0 1.4cqi, transparent 1.4cqi 7cqi),
+        repeating-linear-gradient(-45deg, rgba(235, 235, 240, .22) 0 1.4cqi, transparent 1.4cqi 7cqi);
+    opacity: .9;
+}
+
+.device-tile-label {
+    position: absolute;
+    inset: 0 0 0 34%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+    font-size: 11cqi;
+    color: #0d2b40;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 4cqi;
+    pointer-events: none;
+}
+
+.device-tile-label.is-long {
+    font-size: 8cqi;
+}
+
+.device-tile-label.is-xlong {
+    font-size: 6cqi;
+}
+
+/* Pattern variant text gets the same brushed-metal text-clip treatment
+   as the rest of the app's PatternVehicle tiles */
+.device-tile.pattern .device-tile-label {
+    color: #fff;
+    background: linear-gradient(#fff 0%,
+            #ececec 12%,
+            #bfbfbf 25%,
+            #ffffff 40%,
+            #868686 55%,
+            #fdfdfd 72%,
+            #bfbfbf 88%,
+            #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Vehicle-state overlays, matching the same states used across the app */
+.device-tile.on-call,
+.device-tile.in-shop {
+    opacity: .6;
+    filter: grayscale(1);
+}
+
+.device-tile.moved-up {
+    filter: brightness(.5) saturate(.7);
+}
+
+.device-tile.moved-up .device-tile-plate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.6cqi solid #000;
+    pointer-events: none;
+}
+
+.device-tile.browned-out .device-tile-plate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(157, 101, 45, .65);
+    pointer-events: none;
+}
+
+.device-tile.additional-vehicle .device-tile-plate::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(238, 255, 0, .35);
+    pointer-events: none;
+}
+
+/* ===================== Gallery / showcase page ===================== */
+
+.devices-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+}
+
+.devices-intro h1 {
+    color: #1E1E1E;
+    font-size: 28px;
+    margin: 0 0 6px;
+}
+
+.devices-intro p {
+    color: #444;
+    max-width: 70ch;
+    margin: 0 0 8px;
+    line-height: 1.5;
+}
+
+.devices-section {
+    margin-top: 36px;
+}
+
+.devices-section h2 {
+    color: #1E1E1E;
+    font-size: 20px;
+    border-bottom: 2px solid var(--c-border, #dde3e9);
+    padding-bottom: 8px;
+    margin: 0 0 16px;
+}
+
+.devices-section h3 {
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+}
+
+.device-color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px 16px;
+    margin-bottom: 28px;
+}
+
+.device-color-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.device-color-item-swatches {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.device-color-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.device-color-name code {
+    font-size: 11px;
+    color: #6a6a6a;
+    font-weight: 400;
+}
+
+.device-states-grid,
+.device-scale-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.device-scale-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.device-scale-item span {
+    font-size: 11px;
+    color: #555;
+}
+
+.device-state-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 220px;
+}
+
+.device-state-item span {
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .device-color-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+
+    .device-state-item {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .device-state-item {
+        width: 100%;
+    }
+}

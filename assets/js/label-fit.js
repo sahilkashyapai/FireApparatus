@@ -1,9 +1,8 @@
 (function () {
     // Shrinks each device label's font size just enough to fit inside its own
-    // label-plate box (the white box baked into the vehicle icon artwork).
-    // Never grows past the CSS-defined size, and restores back up to it
-    // whenever the box has room again (e.g. on resize).
-    const SELECTOR = '.ai-fam-device-list .ai-fam-device > span[data-text]';
+    // right-part panel. Never grows past the CSS-defined size, and restores
+    // back up to it whenever the box has room again (e.g. on resize).
+    const SELECTOR = '.ai-fam-device-list .ai-fam-device-wrapper .right-part > span[data-text]';
     const MIN_FONT_SIZE = 8;
     const ABSOLUTE_MIN_FONT_SIZE = 6;
     const SAFETY_MARGIN = 0.94;

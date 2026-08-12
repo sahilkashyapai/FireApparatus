@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="glance">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Apparatus Manager</title>
+    <link rel="icon" type="image/png" href="https://appinfoui.netlify.app/cdn/ai-icon.png">
+    <!-- AppInfo.UI CSS -->
+    <link rel="stylesheet" href="https://appinfoui.netlify.app/cdn/components.css?v=1.0.2">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="page-preloader" id="pagePreloader">
+        <div class="preloader-header">
+            <div class="ai-skel ai-skel-circle" style="width:30px;height:30px;margin:0;"></div>
+            <div class="ai-skel ai-skel-title" style="width:150px;margin:0;"></div>
+            <div class="preloader-header-spacer"></div>
+            <div class="ai-skel ai-skel-text" style="width:130px;margin:0;"></div>
+            <div class="ai-skel ai-skel-btn" style="width:90px;height:30px;margin:0;"></div>
+        </div>
+
+        <div class="preloader-body">
+            <div class="preloader-row preloader-row--upper">
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preloader-row preloader-row--lower">
+                <div class="preloader-card preloader-card--wide">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card preloader-card--wide">
+                    <div class="ai-skel ai-skel-title"></div>
+                    <div class="preloader-tile-row">
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                        <div class="ai-skel"></div>
+                    </div>
+                </div>
+                <div class="preloader-card preloader-card--wider">
+                    <div class="ai-skel ai-skel-title" style="width:100%;"></div>
+                    <div class="ai-skel ai-skel-text"></div>
+                    <div class="ai-skel ai-skel-text"></div>
+                    <div class="ai-skel ai-skel-text"></div>
+                    <div class="ai-skel ai-skel-text" style="width:70%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header header--no-nav">
+        <div class="header-head">
+            <div class="header-branding">
+                <img src="https://appinfoui.netlify.app/cdn/images/glance/logo.png" class="brand-logo" alt="Logo" />
+                <span class="powered-by">Fire Apparatus Manager</span>
+            </div>
+            <div class="header-dropdown-items ai-d-none">
+                <select class="ai-select" id="themeSelect" aria-label="Theme">
+                    <option value="glance">Glance</option>
+                    <option value="mainelink">MaineLink</option>
+                    <option value="mcomms">MComms</option>
+                    <option value="rattler">Rattler</option>
+                    <option value="wwe">WWE</option>
+                </select>
+            </div>
+            <div class="header-user-actions">
+                <div class="user-info">
+                    <span class="user-name">Username</span>
+                    <span>-</span>
+                    <span class="user-business">Test Business AI</span>
+                </div>
+                <button class="ai-btn ai-btn-primary" type="button">
+                    <span class="logout-btn-text">LOGOUT</span>
+                    <span class="logout-btn-icon material-symbols-outlined">power_settings_new</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="ai-fam-wrapper">
+            <div class="upper-section">
+
+                <div class="content-card">
+                    <h3 class="card-heading">STATION 21</h3>
+
+                    <div class="ai-fam-devices-wrapper list2x2">
+
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part PatternVehicle">
+                                        <span class="ai-fam-device-text" data-text="E21">E21</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="TK21">TK21</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part blue"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="R21">R21</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SW21">SW21</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part green"></div>
+                                    <div class="right-part yellow">
+                                        <span class="ai-fam-device-text" data-text="A21">A21</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-heading">STATION 22</h3>
+
+                    <div class="ai-fam-devices-wrapper list2x2">
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="E22">E22</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-heading">STATION 23</h3>
+
+                    <div class="ai-fam-devices-wrapper list2x2">
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="E23">E23</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-heading">STATION 24</h3>
+
+                    <div class="ai-fam-devices-wrapper list2x2">
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="E24">E24</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="TK24">TK24</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part purple"></div>
+                                    <div class="right-part PatternVehicle">
+                                        <span class="ai-fam-device-text" data-text="SQ24">SQ24</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part black"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="BC24">BC24</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-heading">STATION 25</h3>
+
+                    <div class="ai-fam-devices-wrapper list2x2">
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="E25">E25</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="TK25">TK25</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part black"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="BC25">BC25</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lower-section">
+                <div class="content-card" id="readySpares">
+                    <h3 class="card-heading">READY SPARES</h3>
+
+                    <div class="ai-fam-devices-wrapper list3x3">
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE(E25)">SpE(E25)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE(E126)">SpE(E126)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE(E123)">SpE(E123)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE(TK126)">SpE(TK126)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE(TK127)">SpE(TK127)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part green"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE">SpE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                    </div>
+                </div>
+                <div class="content-card" id="inShop">
+                    <h3 class="card-heading">IN SHOP</h3>
+
+                    <div class="ai-fam-devices-wrapper list3x3">
+                        <div class="ai-fam-device-list">
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE">SpE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part red"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE">SpE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part blue"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE">SpE</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ai-fam-device-wrapper">
+                                <div class="ai-fam-device-middle-part">
+                                    <div class="left-part orange"></div>
+                                    <div class="right-part availablevehicle">
+                                        <span class="ai-fam-device-text" data-text="SpE">SpE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                        <div class="ai-fam-device-list-divider"></div>
+
+                        <div class="ai-fam-device-list"></div>
+                    </div>
+                </div>
+                <div class="content-card swap-log-card" id="swapLogCard">
+                    <div class="swap-log-header">
+                        <button class="ai-btn ai-btn-primary-light swap-log-add-btn" type="button">ADD SWAP</button>
+                        <h3 class="swap-log-title">SWAP OUT LOG</h3>
+                        <div class="swap-log-actions">
+                            <button class="icon-btn" type="button">
+                                <img src="./assets/images/sheet-icon.png" alt="Excel icon">
+                            </button>
+                            <button class="icon-btn" type="button">
+                                <img src="./assets/images/pdf-icon.png" alt="PDF icon">
+                            </button>
+                            <button class="icon-btn" type="button">
+                                <img src="./assets/images/print-icon.png" alt="Print icon">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="swap-log-table-wrapper">
+                        <table class="swap-log-table">
+                            <thead>
+                                <tr>
+                                    <th>USER</th>
+                                    <th>TIME</th>
+                                    <th>UNIT ID</th>
+                                    <th>DEVICE IN SERVICE</th>
+                                    <th>DEVICE OOS</th>
+                                    <th>EDIT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="swap-log-row">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td><input type="text" class="swap-log-input"></td>
+                                    <td><input type="text" class="swap-log-input"></td>
+                                    <td><input type="text" class="swap-log-input"></td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button"><span
+                                                class="material-symbols-outlined">check</span></button>
+                                        <button class="icon-btn icon-btn-delete" type="button"><span
+                                                class="material-symbols-outlined">close</span></button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row swap-log-row--highlight">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row swap-log-row--muted">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row swap-log-row--highlight">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row swap-log-row--muted">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="swap-log-row">
+                                    <td>atemes</td>
+                                    <td>2026-03-25 12:25</td>
+                                    <td>BC1</td>
+                                    <td>BC_20000</td>
+                                    <td>SpBC_20001</td>
+                                    <td class="swap-log-edit-cell">
+                                        <button class="icon-btn" type="button">
+                                            <span class="material-symbols-outlined">edit_square</span>
+                                        </button>
+                                        <button class="icon-btn icon-btn-delete" type="button">
+                                            <span class="material-symbols-outlined">close</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="ai-fam-toolbar">
+            <button class="ai-fam-toolbar-btn" type="button" id="legendToggleBtn">
+                <span class="material-symbols-outlined">edit</span>
+            </button>
+
+            <button class="ai-fam-toolbar-btn" type="button" id="readySparesToggleBtn">
+                <span class="material-symbols-outlined">fire_truck</span>
+            </button>
+
+            <button class="ai-fam-toolbar-btn" type="button" id="inShopToggleBtn">
+                <span class="material-symbols-outlined">tire_repair</span>
+            </button>
+
+            <button class="ai-fam-toolbar-btn" type="button" id="swapLogToggleBtn">
+                <span class="material-symbols-outlined">history</span>
+            </button>
+        </aside>
+
+        <div class="legend-popup is-hidden" id="legendPopup">
+            <img src="./assets/images/legend-image.jpg" alt="Swap Out Manager legend">
+        </div>
+    </main>
+
+    <!-- AppInfo.UI JavaScript -->
+    <script src="https://appinfoui.netlify.app/cdn/components.js?v=1.0.2" defer></script>
+    <script src="./assets/js/label-fit.js" defer></script>
+    <script src="./assets/js/main.js" defer></script>
+</body>
+
+</html>

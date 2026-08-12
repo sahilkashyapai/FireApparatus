@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="glance">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Tiles — Fire Apparatus Manager</title>
+    <link rel="icon" type="image/png" href="https://appinfoui.netlify.app/cdn/ai-icon.png">
+    <!-- AppInfo.UI CSS -->
+    <link rel="stylesheet" href="https://appinfoui.netlify.app/cdn/components.css?v=1.0.2">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/devices.css">
+</head>
+
+<body>
+
+    <header class="header header--no-nav">
+        <div class="header-head">
+            <div class="header-branding">
+                <img src="https://appinfoui.netlify.app/cdn/images/glance/logo.png" class="brand-logo" alt="Logo" />
+                <span class="powered-by">Fire Apparatus Manager</span>
+            </div>
+            <div class="header-dropdown-items ai-d-none">
+                <select class="ai-select" id="themeSelect" aria-label="Theme">
+                    <option value="glance">Glance</option>
+                    <option value="mainelink">MaineLink</option>
+                    <option value="mcomms">MComms</option>
+                    <option value="rattler">Rattler</option>
+                    <option value="wwe">WWE</option>
+                </select>
+            </div>
+            <div class="header-user-actions">
+                <div class="user-info">
+                    <span class="user-name">Username</span>
+                    <span>-</span>
+                    <span class="user-business">Test Business AI</span>
+                </div>
+                <button class="ai-btn ai-btn-primary" type="button">
+                    <span class="logout-btn-text">LOGOUT</span>
+                    <span class="logout-btn-icon material-symbols-outlined">power_settings_new</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="devices-page">
+            <div class="devices-intro">
+                <h1>Device Tiles — CSS Component Library</h1>
+                <p>
+                    Every vehicle tile below is built entirely from HTML and CSS — no
+                    <code>availablevehicle-*.png</code> or <code>PatternVehicle-*.png</code> raster
+                    images. Each tile is sized in container-query units relative to its own
+                    width, so it stays crisp at any size on any screen instead of the fixed
+                    resolutions a PNG is limited to.
+                </p>
+            </div>
+
+            <div class="devices-section">
+                <h2>Vehicle Type Colors</h2>
+                <div class="device-color-grid" id="colorGrid"></div>
+            </div>
+
+            <div class="devices-section">
+                <h2>Vehicle States</h2>
+                <div class="device-states-grid" id="stateGrid"></div>
+            </div>
+
+            <div class="devices-section">
+                <h2>Responsive Scaling</h2>
+                <p style="color:#444;margin:0 0 16px;">
+                    The same component, rendered at different explicit widths. Resize your
+                    browser window too — every tile reflows and rescales with no pixelation.
+                </p>
+                <div class="device-scale-row" id="scaleRow"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://appinfoui.netlify.app/cdn/components.js?v=1.0.2" defer></script>
+    <script src="./assets/js/devices.js" defer></script>
+</body>
+
+</html>

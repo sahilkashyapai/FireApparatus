@@ -42,11 +42,36 @@ document.addEventListener('DOMContentLoaded', () => {
     assignStableIds();
     restoreLayout();
     restoreOnCallState();
-    document.querySelectorAll('.ai-fam-device').forEach(updateDeviceState);
+    document.querySelectorAll('.ai-fam-device-wrapper').forEach(updateDeviceState);
+    randomizeDeviceLook();
     initDeviceDragAndDrop();
     initSwapLog();
     initThemeSwitcher();
 });
+
+// PatternVehicle (diamond-plate) vs availablevehicle (brushed metal) is just a
+// cosmetic finish, not a status — so on every load each non-status tile gets
+// re-rolled between the two. 45% sits in the middle of the 42-48% range asked
+// for, giving pattern-finish tiles a clear minority presence without making
+// the dashboard feel dominated by either finish.
+const PATTERN_FINISH_PROBABILITY = 0.45;
+const RIGHT_PART_STATUS_CLASSES = ['yellow', 'gray', 'brown', 'black', 'white'];
+
+function randomizeDeviceLook() {
+    document.querySelectorAll('.ai-fam-device-wrapper .right-part').forEach((rightPart) => {
+        const hasStatus = RIGHT_PART_STATUS_CLASSES.some((status) =>
+            rightPart.classList.contains(status) || rightPart.classList.contains(
+                status.charAt(0).toUpperCase() + status.slice(1)
+            )
+        );
+        if (hasStatus) return;
+
+        rightPart.classList.remove('PatternVehicle', 'availablevehicle');
+        rightPart.classList.add(
+            Math.random() < PATTERN_FINISH_PROBABILITY ? 'PatternVehicle' : 'availablevehicle'
+        );
+    });
+}
 
 const LAYOUT_STORAGE_KEY = 'fireApparatusLayout_v2';
 const ON_CALL_STORAGE_KEY = 'fireApparatusOnCall_v1';
@@ -82,7 +107,7 @@ function initThemeSwitcher() {
 function assignStableIds() {
     const textCounts = {};
 
-    document.querySelectorAll('.ai-fam-device').forEach((device) => {
+    document.querySelectorAll('.ai-fam-device-wrapper').forEach((device) => {
         const text = getDeviceLabel(device);
         const occurrence = textCounts[text] || 0;
         textCounts[text] = occurrence + 1;
@@ -137,7 +162,7 @@ function updateDeviceState(device) {
 function saveLayout() {
     const layout = {};
     document.querySelectorAll('.ai-fam-device-list').forEach((list) => {
-        layout[list.dataset.listId] = Array.from(list.querySelectorAll('.ai-fam-device'))
+        layout[list.dataset.listId] = Array.from(list.querySelectorAll('.ai-fam-device-wrapper'))
             .map((device) => device.dataset.deviceId);
     });
     localStorage.setItem(LAYOUT_STORAGE_KEY, JSON.stringify(layout));
@@ -153,7 +178,7 @@ function restoreLayout() {
     if (!layout) return;
 
     const devicesById = new Map();
-    document.querySelectorAll('.ai-fam-device').forEach((device) => {
+    document.querySelectorAll('.ai-fam-device-wrapper').forEach((device) => {
         devicesById.set(device.dataset.deviceId, device);
     });
 
@@ -168,7 +193,7 @@ function restoreLayout() {
 }
 
 function saveOnCallState() {
-    const onCallIds = Array.from(document.querySelectorAll('.ai-fam-device.on-call'))
+    const onCallIds = Array.from(document.querySelectorAll('.ai-fam-device-wrapper.on-call'))
         .map((device) => device.dataset.deviceId);
     localStorage.setItem(ON_CALL_STORAGE_KEY, JSON.stringify(onCallIds));
 }
@@ -182,7 +207,7 @@ function restoreOnCallState() {
     }
     if (!Array.isArray(onCallIds)) return;
 
-    document.querySelectorAll('.ai-fam-device').forEach((device) => {
+    document.querySelectorAll('.ai-fam-device-wrapper').forEach((device) => {
         device.classList.toggle('on-call', onCallIds.includes(device.dataset.deviceId));
     });
 }
@@ -286,7 +311,7 @@ function initDeviceDragAndDrop() {
         saveOnCallState();
     }
 
-    document.querySelectorAll('.ai-fam-device').forEach((device) => {
+    document.querySelectorAll('.ai-fam-device-wrapper').forEach((device) => {
         device.setAttribute('draggable', 'true');
         device.addEventListener('dragstart', handleDragStart);
         device.addEventListener('dragend', handleDragEnd);
