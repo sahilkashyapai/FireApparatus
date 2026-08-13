@@ -197,10 +197,17 @@
     box-shadow: -1px -1px 2px 0 #FFFFFF25;
 }
 
+.upper-section .ai-fam-device-wrapper {
+    height: calc(100% / 4 - 8px);
+}
+
+.lower-section .ai-fam-device-wrapper {
+    height: calc(100% / 7 - 9px);
+}
 
 
 .ai-fam-device-wrapper {
-    height: 60px;
+    min-height: 50px;
     width: 100%;
     flex-shrink: 0;
     background: no-repeat center center;
@@ -226,7 +233,7 @@
     border: 3px solid #000000;
 }
 
-/* Red #FF1111 — E — Engine */
+/* Red #FF1111 - E - Engine */
 .ai-fam-device-wrapper .left-part.red,
 .ai-fam-device-wrapper .left-part.Red {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -234,7 +241,7 @@
             #cc0e0e 62%, #8c0909 86%, #610606 100%);
 }
 
-/* Dark Red #990A0A — WT — Tankers / Water Tenders */
+/* Dark Red #990A0A - WT - Tankers / Water Tenders */
 .ai-fam-device-wrapper .left-part.darkred,
 .ai-fam-device-wrapper .left-part.DarkRed {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -242,7 +249,7 @@
             #7a0808 62%, #540606 86%, #3a0404 100%);
 }
 
-/* Blue #369ED3 — M/A/R — Medic / Ambulance / Rescue */
+/* Blue #369ED3 - M/A/R - Medic / Ambulance / Rescue */
 .ai-fam-device-wrapper .left-part.blue,
 .ai-fam-device-wrapper .left-part.Blue {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -250,7 +257,7 @@
             #2b7ea9 62%, #1e5774 86%, #153c50 100%);
 }
 
-/* Dark Blue #1C5380 — MR/R — Medical Response without transport function */
+/* Dark Blue #1C5380 - MR/R - Medical Response without transport function */
 .ai-fam-device-wrapper .left-part.darkblue,
 .ai-fam-device-wrapper .left-part.DarkBlue {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -258,7 +265,7 @@
             #164266 62%, #0f2e46 86%, #0b2031 100%);
 }
 
-/* Orange #FF8000 — L/TK — Ladder / Truck */
+/* Orange #FF8000 - L/TK - Ladder / Truck */
 .ai-fam-device-wrapper .left-part.orange,
 .ai-fam-device-wrapper .left-part.Orange {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -266,7 +273,7 @@
             #cc6600 62%, #8c4600 86%, #613100 100%);
 }
 
-/* Purple #7238B9 — SQ/HM/TRT — Squads, Special Operations */
+/* Purple #7238B9 - SQ/HM/TRT - Squads, Special Operations */
 .ai-fam-device-wrapper .left-part.purple,
 .ai-fam-device-wrapper .left-part.Purple {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -274,7 +281,7 @@
             #5b2d94 62%, #3f1f66 86%, #2b1546 100%);
 }
 
-/* Black #000000 — BC/DC — Command Units (Battalion, Division, etc) */
+/* Black #000000 - BC/DC - Command Units (Battalion, Division, etc) */
 .ai-fam-device-wrapper .left-part.black,
 .ai-fam-device-wrapper .left-part.Black {
     background: radial-gradient(140% 140% at 78% 18%,
@@ -331,7 +338,7 @@
 }
 
 .ai-fam-device-wrapper .right-part.PatternVehicle span {
-        display: inline-block;
+    display: inline-block;
     font-weight: 900;
     font-family: Work Sans, sans-serif;
     color: #fff;
@@ -375,32 +382,32 @@
 /* ===== Vehicle State colors (right-part) =====
    Base hex values are the official Vehicle State legend. */
 
-/* Yellow #EEFF00 — Added unit stood up in excess of typical deployment */
+/* Yellow #EEFF00 - Added unit stood up in excess of typical deployment */
 .ai-fam-device-wrapper .right-part.yellow,
 .ai-fam-device-wrapper .right-part.Yellow {
     background-color: #edf58f;
 }
 
-/* Grayed-out — On a Call, via CAD message or manually managed */
+/* Grayed-out - On a Call, via CAD message or manually managed */
 .ai-fam-device-wrapper .right-part.gray,
 .ai-fam-device-wrapper .right-part.Gray {
     background-color: #908882;
 }
 
-/* Brown #9D652D — Browned Out, Unit ID not currently staffed */
+/* Brown #9D652D - Browned Out, Unit ID not currently staffed */
 .ai-fam-device-wrapper .right-part.brown,
 .ai-fam-device-wrapper .right-part.Brown {
     background-color: #9d652d;
 }
 
-/* Black #000000 — Moved up, changes automatically when a unit tile is
+/* Black #000000 - Moved up, changes automatically when a unit tile is
    moved between two stations */
 .ai-fam-device-wrapper .right-part.black,
 .ai-fam-device-wrapper .right-part.Black {
     background-color: #000000;
 }
 
-/* White/dotted — Stand-in Vehicle */
+/* White/dotted - Stand-in Vehicle */
 .ai-fam-device-wrapper .right-part.white,
 .ai-fam-device-wrapper .right-part.White {
     background-color: #f2f2f2;
@@ -436,6 +443,7 @@
 
 .ai-fam-device-list .ai-fam-device-wrapper.moved-up {
     --tile-state-filter: brightness(0.4) saturate(0.7);
+    border-color: #989898;
 }
 
 .ai-fam-device-list .ai-fam-device-wrapper.moved-up::after {
@@ -595,6 +603,9 @@
     font-size: 12px;
     letter-spacing: .5px;
     border-right: 1px solid #ffffff20;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .swap-log-table td {
@@ -657,9 +668,26 @@
     font-size: 24px;
 }
 
-/* ===================== Responsive breakpoints ===================== */
+/*  Responsive breakpoints  */
+@media (max-height: 950px) {
 
-/* Laptop: tighten spacing/headings a touch on smaller desktop screens */
+    .upper-section,
+    .lower-section {
+        height: unset;
+        overflow-x: unset;
+        overflow-y: unset;
+    }
+
+    .upper-section .content-card {
+        height: 370px;
+    }
+
+    .lower-section .content-card {
+        height: 505px;
+    }
+
+}
+
 @media (max-width: 1366px) {
     .ai-fam-wrapper {
         gap: 12px;
@@ -681,7 +709,7 @@
     }
 }
 
-/* Tablet landscape: wrap the 5-up station row into two rows */
+
 @media (max-width: 1024px) {
     .ai-fam-wrapper {
         margin-right: 56px;
@@ -694,18 +722,15 @@
 
     .upper-section .content-card {
         width: calc(50% - 4px);
-        height: auto;
     }
 
     .lower-section {
         flex-wrap: wrap;
-        height: auto;
     }
 
     .lower-section .content-card:nth-of-type(1),
     .lower-section .content-card:nth-of-type(2) {
         width: 100%;
-        height: auto;
     }
 
     .ai-fam-device-list-divider {

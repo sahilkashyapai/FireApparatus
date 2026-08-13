@@ -5,7 +5,7 @@
    component scales cleanly from a few px to full width on any screen
    instead of relying on raster images at fixed resolutions. */
 
-/* .device-tile is the container query context — it must not size itself
+/* .device-tile is the container query context - it must not size itself
    in cqi units (an element cannot query the container it establishes).
    All cqi-based visual styling lives on .device-tile-frame, a plain
    descendant sized to fill it. */

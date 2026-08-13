@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // PatternVehicle (diamond-plate) vs availablevehicle (brushed metal) is just a
-// cosmetic finish, not a status — so on every load each non-status tile gets
+// cosmetic finish, not a status - so on every load each non-status tile gets
 // re-rolled between the two. 45% sits in the middle of the 42-48% range asked
 // for, giving pattern-finish tiles a clear minority presence without making
 // the dashboard feel dominated by either finish.
@@ -155,7 +155,7 @@ function updateDeviceState(device) {
     device.classList.toggle('moved-up', isMovedUp);
     device.classList.toggle('in-shop', zone === 'shop');
     device.title = isMovedUp
-        ? 'Moved up from ' + device.dataset.homeCard + ' — double-click to return home'
+        ? 'Moved up from ' + device.dataset.homeCard + ' - double-click to return home'
         : 'Right-click to toggle On Call';
 }
 
@@ -288,7 +288,7 @@ function initDeviceDragAndDrop() {
         this.appendChild(draggedItem);
         updateDeviceState(draggedItem);
         saveLayout();
-        logSwap({ unitId: targetCardLabel, deviceInService: incomingLabel, deviceOOS: '—' });
+        logSwap({ unitId: targetCardLabel, deviceInService: incomingLabel, deviceOOS: '-' });
     }
 
     function handleDeviceDblClick() {
@@ -302,7 +302,7 @@ function initDeviceDragAndDrop() {
         homeList.appendChild(this);
         updateDeviceState(this);
         saveLayout();
-        logSwap({ unitId: this.dataset.homeCard, deviceInService: label, deviceOOS: '—' });
+        logSwap({ unitId: this.dataset.homeCard, deviceInService: label, deviceOOS: '-' });
     }
 
     function handleDeviceContextMenu(e) {

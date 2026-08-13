@@ -61,7 +61,7 @@
             let measured = measureTextWidth(text, `${fontWeight} ${fontSize}px ${fontFamily}`, letterSpacing);
             let guard = 0;
             // Keep trimming past MIN_FONT_SIZE, down to ABSOLUTE_MIN_FONT_SIZE, rather
-            // than giving up mid-overflow — a very narrow tile (small-laptop widths,
+            // than giving up mid-overflow - a very narrow tile (small-laptop widths,
             // long labels like "SpE(TK126)") would otherwise clip text even though the
             // loop still had room to shrink further.
             while (measured > boxWidth && fontSize > ABSOLUTE_MIN_FONT_SIZE && guard < 12) {
